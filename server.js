@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use(express.static('public'))
 
 const MongoClient = require('mongodb').MongoClient
 var db
@@ -33,12 +35,33 @@ app.get('/', (req, res) => {
   })
 })
 
-
-/*imageSearch("dogs", function(images) {
-	for (i in images) {
-		app.get('/', function(req,res) {
-			res.send("hello world")
+app.put('/quotes', (req, res) => {
+  db.collection('quotes')
+  .findOneAndUpdate({name: 'Bijan'}, {
+    $set: {
+      name: req.body.name,
+      quote: req.body.quote
+    }
+  }, {
+    sort: {_id: -1},
+    upsert: true
+  }, (err, result) => {
+    if (err) return res.send(err)
+    res.send(result)
+  })
 })
-	}
-});
-*/
+
+app.delete('/quotes', (req, res) => {
+  db.collection('quotes').findOneAndDelete({name: req.body.name},
+  (err, result) => {
+    if (err) return res.send(500, err)
+    res.json('A darth vadar quote got deleted')
+  })
+})
+
+/*
+imageSearch("dick", function(images) {
+	for (i in images) {
+		console.log(images[i]);
+  }
+})*/
