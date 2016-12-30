@@ -21,6 +21,12 @@
     <input type="text" placeholder="quote" name="quote">
     <button type="submit">Submit</button>
   </form>
+  <form action="/animals" method="POST">
+    <input type="text" placeholder="Enter animal" name="animal">
+    <button type="submit">Submit</button>
+  </form>
+  <button id="dog">Dog</button>
+  <Button id="cat">Cat</Button>
   <div>
     <h2>Replace last quote written by Master Yoda with a quote written by Darth Vadar</h2>
     <button id="update"> Darth Vadar invades! </button>
@@ -29,6 +35,7 @@
   <h2>Delete Darth Vadar's first quote</h2>
   <button id="delete"> Delete first Darth Vadar quote </button>
 </div>
+<img src= <%= link.url%>  style= "width:104px;height:142px"/>
 <script src="main.js"></script>
 </body>
 </html>

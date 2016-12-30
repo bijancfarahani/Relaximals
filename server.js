@@ -18,6 +18,15 @@ MongoClient.connect('mongodb://hi:hi@ds145188.mlab.com:45188/relaximals', (err, 
 
 var imageSearch = require("google-image-search-url-results");
 
+app.put('/animals', (req, res) => {
+  console.log(req.body.animal)
+  var url;
+  imageSearch("Dog", function(images) {
+    url = images[Math.floor(Math.random() * images.length)] 
+  })
+  res.method = 'get'
+  res.redirect(url)
+})
 
 app.post('/quotes', (req, res) => {
   db.collection('quotes').save(req.body, (err, result) => {

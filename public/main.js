@@ -32,3 +32,17 @@ del.addEventListener('click', function () {
     	window.location.reload(true)
   	})
 })
+
+var dog = document.getElementById('dog')
+dog.addEventListener('click', function () {
+  fetch('animals', {
+    method: 'put',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      'animal': 'dog'
+    })
+  })
+  .then(data => {
+    window.location.reload(true)
+  })
+})
