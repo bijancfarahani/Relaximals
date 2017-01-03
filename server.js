@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const imageSearch = require("google-image-search-url-results");
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -16,18 +17,6 @@ MongoClient.connect('mongodb://hi:hi@ds145188.mlab.com:45188/relaximals', (err, 
   })
 })
 
-var imageSearch = require("google-image-search-url-results");
-
-app.put('/animals', (req, res) => {
-  console.log(req.body.animal)
-  var url;
-  imageSearch("Dog", function(images) {
-    url = images[Math.floor(Math.random() * images.length)] 
-  })
-  res.method = 'get'
-  res.redirect(url)
-})
-
 app.post('/quotes', (req, res) => {
   db.collection('quotes').save(req.body, (err, result) => {
     if (err) return console.log(err)
@@ -39,8 +28,15 @@ app.post('/quotes', (req, res) => {
 app.get('/', (req, res) => {
   db.collection('quotes').find().toArray((err, result) => {
     if (err) return console.log(err)
-    // renders index.ejs
-    res.render('index.ejs', {quotes: result})
+      res.render('index.ejs') 
+    })
+})
+app.get('/animal',(req, res) => {
+  console.log('in get /animals')
+  var url;
+  imageSearch("dog", function(images) {
+    url = images[Math.floor(Math.random() * images.length)]
+    res.json(url);
   })
 })
 
@@ -67,10 +63,3 @@ app.delete('/quotes', (req, res) => {
     res.json('A darth vadar quote got deleted')
   })
 })
-
-/*
-imageSearch("dick", function(images) {
-	for (i in images) {
-		console.log(images[i]);
-  }
-})*/

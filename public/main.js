@@ -1,4 +1,19 @@
-var update = document.getElementById('update')
+var dog = document.getElementById('dogButton')
+dog.addEventListener('click', function () {
+  console.log('begin click')
+  $.ajax({
+    type: 'get',
+    url: '/animal',
+    dataType: "json",
+    success: function(res) {
+      console.log(res)
+      $('#animalImg').attr('src', res + new Date().getTime());
+    }
+
+  })
+})
+
+/*var update = document.getElementById('update')
 update.addEventListener('click', function () {
 	fetch('quotes', {
   		method: 'put',
@@ -32,17 +47,4 @@ del.addEventListener('click', function () {
     	window.location.reload(true)
   	})
 })
-
-var dog = document.getElementById('dog')
-dog.addEventListener('click', function () {
-  fetch('animals', {
-    method: 'put',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      'animal': 'dog'
-    })
-  })
-  .then(data => {
-    window.location.reload(true)
-  })
-})
+*/
