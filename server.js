@@ -31,10 +31,9 @@ app.get('/', (req, res) => {
       res.render('index.ejs') 
     })
 })
-app.get('/animal',(req, res) => {
-  console.log('in get /animals')
+app.post('/animal',(req, res) => {
   var url;
-  imageSearch("dog", function(images) {
+  imageSearch(req.body.animal, function(images) {
     url = images[Math.floor(Math.random() * images.length)]
     res.json(url);
   })

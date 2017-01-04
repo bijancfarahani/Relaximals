@@ -1,18 +1,28 @@
 var dog = document.getElementById('dogButton')
 dog.addEventListener('click', function () {
-  console.log('begin click')
   $.ajax({
-    type: 'get',
+    type: 'post',
     url: '/animal',
     dataType: "json",
+    data: {animal: "Dog"},
     success: function(res) {
-      console.log(res)
-      $('#animalImg').attr('src', res + new Date().getTime());
+      $('#animalImg').attr('src', res);
     }
-
   })
 })
 
+var cat = document.getElementById('catButton')
+cat.addEventListener('click', function () {
+  $.ajax({
+    type: 'post',
+    url: '/animal',
+    dataType: "json",
+    data: {animal: "Cat"},
+    success: function(res) {
+      $('#animalImg').attr('src', res);
+    }
+  })
+})
 /*var update = document.getElementById('update')
 update.addEventListener('click', function () {
 	fetch('quotes', {
