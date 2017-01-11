@@ -10,13 +10,21 @@
   "author": "Bijan Farahani",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.0.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
-    "fotology": "^1.2.2",
-    "fotology-x": "^1.2.4",
-    "google-image-search-url-results": "^1.0.1",
-    "mongodb": "^2.2.16"
+    "express-session": "^1.0.0",
+    "method-override": "^2.3.7",
+    "mongoose": "^4.6",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
