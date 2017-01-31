@@ -2,6 +2,10 @@ module.exports = function(app, passport) {
 
 // normal routes ===============================================================
 
+    //file uploader
+    app.get('/upload', function(req,res) {
+        res.sendFile(__dirname + '/public/UploadPage.html');
+    });
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
         res.render('index.ejs');
