@@ -10,25 +10,25 @@
             <form name ="addForm" novalidate>
                 <div class="form-group">
                     <label for="username">Name</label>
-                    <input type="text" class="form-control" placeholder="Deadpool?" ng-model="superhero.name" required>
+                    <input type="text" class="form-control" placeholder="Dog?" ng-model="animal.name" required>
                 </div>
 
                 <label class="radio control-label">Gender</label>
                 <div class="radio" >
                     <label>
-                        <input type="radio" name="optionsRadios" value="Male" ng-model="superhero.gender" >
+                        <input type="radio" name="optionsRadios" value="Male" ng-model="animal.gender" >
                         Male
                     </label>
                 </div>
                 <div class="radio" >
                     <label>
-                        <input type="radio" name="optionsRadios" value="Female" ng-model="superhero.gender" required>
+                        <input type="radio" name="optionsRadios" value="Female" ng-model="animal.gender" required>
                         Female
                     </label>
                 </div>
                 <div class="form-group">
                     <label for="username">Super Powers</label>
-                    <input type="text" class="form-control" placeholder="SenseOfHumor" ng-model="superhero.superPowers" required>
+                    <input type="text" class="form-control" placeholder="SenseOfHumor" ng-model="animal.superPowers" required>
                 </div>
                 <div class="form-group">
                     <label for="picture">Main picture</label>
@@ -38,7 +38,7 @@
                         </button>
                         <div style="margin-top:10px;">
                             <!-- Show the thumbnail only when the picture is uploaded -->
-                            <a href="{{superhero.picture.url}}" class="thumbnail" ng-if="superhero.picture">
+                            <a href="{{animal.picture.url}}" class="thumbnail" ng-if="superhero.picture">
                             <!-- the picture is rendered with width: 500 and sharpened -->
                             <img ng-src="{{superhero.picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <hr />              
-                <button type="submit" class="btn btn-danger btn-block"  ng-click="createSuperhero()" ng-disabled="superhero.$invalid || !superhero.picture">Submit</button>             
+                <button type="submit" class="btn btn-danger btn-block"  ng-click="createAnimal()" ng-disabled="animal.$invalid || !animal.picture">Submit</button>             
             </form>
         </div>
     </div>
