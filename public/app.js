@@ -14,7 +14,7 @@
             controller: 'detailController'
         })
         //Redirect to addSuperhero in all the other cases.
-        .otherwise({redirectTo:'/addAnimal'});
+        .otherwise({redirectTo:'/gallery'});
         //Add the API key to use filestack service
         filepickerProvider.setKey('Azh9MkVLvQSCKgw3NLLryz');
 });
