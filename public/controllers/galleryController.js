@@ -1,11 +1,11 @@
 var galleryCtrl = angular.module('galleryCtrl', []);
 galleryCtrl.controller('galleryController', function($scope, $http){
-    $scope.superheroes = [];
+    $scope.animals = [];
     //Retrieve all the superheroes to show the gallery
-    $http.get('/superhero')
+    $http.get('/animal')
         .success(function(data){
             console.log(JSON.stringify(data));
-            $scope.superheroes = data;
+            $scope.animals = data;
         })
         .error(function(data) {
             console.log('Error: ' + data);

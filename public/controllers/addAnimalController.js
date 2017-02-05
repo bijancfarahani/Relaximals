@@ -15,6 +15,7 @@ addCtrl.controller('addAnimalController', function($scope, $http, filepickerServ
     };
     //Single file upload, you can take a look at the options
     $scope.upload = function(){
+        console.log("button pressed");
         filepickerService.pick(
             {
                 mimetype: 'image/*',
