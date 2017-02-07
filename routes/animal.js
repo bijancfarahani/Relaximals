@@ -14,6 +14,7 @@ module.exports = function() {
                 if(err) res.send(err);
                 //If no errors, send them back to the client
                 res.json(animals);
+
             });
         },
         /*
@@ -24,9 +25,11 @@ module.exports = function() {
             var newAnimal = new Animal(req.body);
             //Save it into the DB.
             newAnimal.save(function(err){
-                if(err) res.send(err);
+                if(err) 
+                    res.send(err);
                 //If no errors, send it back to the client
-                res.json(req.body);
+                else
+                    res.json(req.body);
             });
         },
         /*

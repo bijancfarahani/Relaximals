@@ -5,7 +5,7 @@
       <img ng-src="{{animal.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
       <div class="caption text-center">
         <h3>{{animal.name}}</h3>
-        <p><label>Super powers: </label> {{animal.superPowers}}</p>
+        <p><label>Gender: </label> {{animal.gender}}</p>
         <div class="text-right"><a ng-href="/upload#/detail/{{animal._id}}" class="btn btn-danger" role="button">View</a> </div>
       </div>
     </div>

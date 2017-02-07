@@ -38,9 +38,9 @@
                         </button>
                         <div style="margin-top:10px;">
                             <!-- Show the thumbnail only when the picture is uploaded -->
-                            <a href="{{animal.picture.url}}" class="thumbnail" ng-if="superhero.picture">
+                            <a href="{{animal.picture.url}}" class="thumbnail" ng-if="animal.picture">
                             <!-- the picture is rendered with width: 500 and sharpened -->
-                            <img ng-src="{{superhero.picture.url | fpConvert: {filter:'sharpen'} }}">
+                            <img ng-src="{{animal.picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>
                         </div>                  
                     </div>
@@ -52,7 +52,7 @@
                     Upload <span class="caret"></span>
                     </button>
                     <!-- Show the thumbanil of more pictures -->
-                        <div style="margin-top:10px;" ng-repeat="picture in superhero.morePictures">     <div class="col-md-{{12 / superhero.morePictures.length}}">
+                        <div style="margin-top:10px;" ng-repeat="picture in animal.morePictures">     <div class="col-md-{{12 / animal.morePictures.length}}">
                             <a href="{{picture.url}}" class="thumbnail">
                               <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>

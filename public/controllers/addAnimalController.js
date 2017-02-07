@@ -3,15 +3,15 @@ addCtrl.controller('addAnimalController', function($scope, $http, filepickerServ
     $scope.animal = {};
     //Send the newly created superhero to the server to store in the db
     $scope.createAnimal = function(){
-        $http.post('/animal', $scope.animal)
-            .success(function(data){
+        $http.post('/animal').then(successCallback, errorCallback);            
+        function successCallback(data) {
                 console.log(JSON.stringify(data));
                 //Clean the form to allow the user to create new superheroes
                 $scope.animal = {};
-            })
-            .error(function(data) {
+            }
+        function errorCallback(data) {
                 console.log('Error: ' + data);
-            });
+            };
     };
     //Single file upload, you can take a look at the options
     $scope.upload = function(){

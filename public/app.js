@@ -1,4 +1,4 @@
-    var app = angular.module('relaximalsApp', ['addAnimalCtrl', 'galleryCtrl', 'ngRoute', 'angular-filepicker'])
+    var app = angular.module('relaximalsApp', ['addAnimalCtrl', 'galleryCtrl', 'detailCtrl', 'ngRoute', 'angular-filepicker'])
     .config(function($routeProvider, filepickerProvider){
         //The route provider handles the client request to switch route
         $routeProvider.when('/addAnimal', {          
@@ -14,7 +14,10 @@
             controller: 'detailController'
         })
         //Redirect to addSuperhero in all the other cases.
-        .otherwise({redirectTo:'/gallery'});
+        .otherwise({redirectTo:'/addAnimal'});
         //Add the API key to use filestack service
         filepickerProvider.setKey('Azh9MkVLvQSCKgw3NLLryz');
 });
+    app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.hashPrefix('');
+}]);
