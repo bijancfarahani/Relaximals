@@ -3,19 +3,16 @@ addCtrl.controller('addAnimalController', function($scope, $http, filepickerServ
     $scope.animal = {};
     //Send the newly created superhero to the server to store in the db
     $scope.createAnimal = function(){
-        $http.post('/animal').then(successCallback, errorCallback);            
-        function successCallback(data) {
-                console.log(JSON.stringify(data));
-                //Clean the form to allow the user to create new superheroes
-                $scope.animal = {};
-            }
+        $http.post('/animal', $scope.animal).then(function successCallback(data) { 
+            console.log(JSON.stringify(data));
+            $scope.animal = [];
+        },
         function errorCallback(data) {
                 console.log('Error: ' + data);
-            };
+        });
     };
     //Single file upload, you can take a look at the options
     $scope.upload = function(){
-        console.log("button pressed");
         filepickerService.pick(
             {
                 mimetype: 'image/*',
@@ -24,6 +21,7 @@ addCtrl.controller('addAnimalController', function($scope, $http, filepickerServ
                 openTo: 'IMAGE_SEARCH'
             },
             function(Blob){
+                console.log("logging blob")
                 console.log(JSON.stringify(Blob));
                 $scope.animal.picture = Blob;
                 $scope.$apply();

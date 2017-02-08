@@ -2,18 +2,19 @@
 <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2 class="panel-title text-center"><span class="glyphicon glyphicon-user"></span> Superhero details </h2>
+            <h2 class="panel-title text-center"><span class="glyphicon glyphicon-user"></span> Animal details </h2>
         </div>
         <div class="panel-body text-center">
-            <img ng-src="{{animal.picture.url | fpConvert: {filter:'sharpen', w:500} }}" />
-            <h2>{{animal.name}}</h2>
+            <img ng-src="{{animal.data.picture.url | fpConvert: {filter:'sharpen', w:500} }}" />
+            <h2>{{animal.data.name}}</h2>
             <hr />
-            <p class="text-left"><label>gender: </label> {{animal.gender}}</p>
+            <p class="text-left"><label>Gender: </label> {{animal.data.gender}}</p>
+            <p class="text-left"><label>Details: </label> {{animal.data.details}}</p>
                        <!-- Only if there are other pictures -->
-            <div ng-if="animal.morePictures">
+            <div ng-if="animal.data.morePictures">
                 <h3> More Pictures <h3>
-                <div ng-repeat="picture in animal.morePictures">
-                    <div class="col-md-{{12 / animal.morePictures.length}}">
+                <div ng-repeat="picture in animal.data.morePictures">
+                    <div class="col-md-{{12 / animal.data.morePictures.length}}">
                         <a ng-href="{{picture.url}}" class="thumbnail">
                           <img ng-src="{{picture.url | fpConvert: {filter:'sharpen', w:500} }}">
                         </a>

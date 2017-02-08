@@ -4,14 +4,15 @@ var Schema      = mongoose.Schema;
 
 // Defines the superhero schema
 var AnimalSchema = new Schema({
-    name: {type: String, required: false},
+    name: {type: String, required: true},
     gender: {type: String, required: false},
     color: {type: String, required: false},
     breed: {type: String, required: false},
+    details: {type: String, required: false},
     age: {type: String, required: false},
     picture: {type: Schema.Types.Mixed, required: true},
-    morePictures: Schema.Types.Mixed, // this is not required
-    createdAt: {type: Date, default: Date.now},    
+    morePictures: {type: Schema.Types.Mixed, required: false}, // this is not required
+    createdAt: {type: Date, default: Date.now}   
 });
 
 // Sets the createdAt parameter equal to the current time

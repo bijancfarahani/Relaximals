@@ -24,6 +24,8 @@ module.exports = function() {
             //Creates a new superhero
             var newAnimal = new Animal(req.body);
             //Save it into the DB.
+            console.log("saving into db")
+            console.log(newAnimal)
             newAnimal.save(function(err){
                 if(err) 
                     res.send(err);
