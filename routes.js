@@ -8,7 +8,8 @@ module.exports = function(app, passport) {
     });
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        res.sendFile(__dirname + '/public/UploadPage.html');
+        //res.render('index.ejs');
     });
 
     // PROFILE SECTION =========================
@@ -195,5 +196,5 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/'); //change this
 }
