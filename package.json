@@ -4,6 +4,7 @@
   "description": "An app to display fun images of animals to destress",
   "main": "index.js",
   "scripts": {
+    "start": "server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
