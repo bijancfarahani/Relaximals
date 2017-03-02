@@ -1,6 +1,6 @@
 // Dependencies
 var mongoose  = require('mongoose');
-var Animal = require('../models/animal');
+var Animal = require('../app/models/animal');
 // App routes
 module.exports = function() {
     return {

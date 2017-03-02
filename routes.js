@@ -4,11 +4,11 @@ module.exports = function(app, passport) {
 
     //file uploader
     app.get('/upload', function(req,res) {
-        res.sendFile(__dirname + '/public/UploadPage.html');
+        res.sendFile(__dirname + '/public/index.html');
     });
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.sendFile(__dirname + '/public/UploadPage.html');
+        res.sendFile(__dirname + '/public/index.html');
         //res.render('index.ejs');
     });
 
