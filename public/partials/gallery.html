@@ -1,14 +1,14 @@
 <div class="row">
 <div ng-repeat="animal in animals.data track by $index">
-    <div class="col-md-4 col-xs-6  col-sm-offset-0">            
+    <div class="col-md-4 col-xs-6  col-sm-offset-0">
     <div class="thumbnail">
       <img ng-src="{{animal.picture.url | fpConvert: {filter:'sharpen', w:300, h:150} }}" />
       <div class="caption text-center">
         <h3>{{animal.name}}</h3>
         <p><label>Gender: </label> {{animal.gender}}</p>
-        <div class="text-right"><a ng-href="/upload#/detail/{{animal._id}}" class="btn btn-danger" role="button">View</a> </div>
+        <div class="text-right"><a ng-href="#/detail/{{animal._id}}" class="btn btn-danger" role="button">View</a> </div>
       </div>
     </div>
-    </div>  
+    </div>
 </div>
 </div>

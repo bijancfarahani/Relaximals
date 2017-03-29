@@ -1,27 +1,38 @@
 <!DOCTYPE HTML>
-<html ng-app="relaximalsApp">
+<html ng-app="relaximalsApp" ng-controller='mainCtrl as main' ng-show='main.loadme' ng-cloak>
 <head>
     <meta charset="utf-8">
     <title>Relaximals</title>
     <meta name="description" content="Animals database">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <base href="/">
     <!-- CSS -->
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 
     <!-- JS libraries -->
 
-    <script src="./bower_components/angular/angular.js"></script>   
+    <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-route/angular-route.js"></script>
     <script src="./bower_components/filepicker-js/filepicker.js"></script>
     <script src="./bower_components/angular-filepicker/dist/angular_filepicker.js"></script>
 
     <!-- Angular files -->
-    <script src="./app.js"></script>    
+    <script src="./app.js"></script>
+    <script src="./routes.js"></script>
 
     <script src="./js/controllers/addAnimalController.js"></script>
     <script src="./js/controllers/galleryController.js"></script>
     <script src="./js/controllers/detailController.js"></script>
+    <script src="./js/controllers/facebookController.js"></script>
+    <script src="./js/controllers/userCtrl.js"></script>
+    <script src="./js/controllers/mainCtrl.js"></script>
+
+    <script src="./js/services/userServices.js"></script>
+    <script src="./js/services/authServices.js"></script>
+
+
+
 
 </head>
 <body>
@@ -29,13 +40,20 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#/">Relaximals MEAN app</a>
+                <a class="navbar-brand" href="/">Relaximals MEAN app</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li role="presentation"><a href="#addAnimal">Add Animal </a> </li>
-                <li role="presentation"><a href="#gallery">Gallery</a></li>
+                <li role="presentation"><a href="/addAnimal">Add Animal </a> </li>
+                <li role="presentation"><a href="/gallery">Gallery</a></li>
+                <li role="presentation"><a ng-show='!main.isLoggedIn'href="/register">register</a></li>
+                <li role="presentation"><a ng-show='!main.isLoggedIn'href="/login">login</a></li>
+                <li role="presentation"><a ng-show= 'main.isLoggedIn'href="/"ng-click='main.logout();'>logout</a></li>
+                <li role="presentation"><a ng-show='main.isLoggedIn'href="/profile">Hello {{main.username}}</a></li>
+
+
+
               </ul>
             </div>
         </div>
