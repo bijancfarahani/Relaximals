@@ -25,7 +25,7 @@ module.exports = function(app,passport) {
   passport.use(new FacebookStrategy({
     clientID: '447016842355234',
     clientSecret: '2eb7ea8fbf47062c84053546ad0833b9',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+    callbackURL: 'https://relaximals.herokuapp.com/auth/facebook/callback',
     profileFields: ['id','photos','emails', 'displayName']
     },
     function(accessToken, refreshToken, profile, done) {
@@ -45,7 +45,7 @@ module.exports = function(app,passport) {
   passport.use(new TwitterStrategy({
       consumerKey: '29VMlZLe7yJLNOjLacEsx09Sz',
       consumerSecret: 'JlCg12O00Gn4i1PG2nIZEnMAKZrwv03RM6nlK9Nyq0O56Q10ko',
-      callbackURL: 'http://localhost:3000/auth/twitter/callback',
+      callbackURL: 'https://relaximals.herokuapp.com/auth/twitter/callback',
       userProfileURL: 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true'
     },
     function(token, tokenSecret, profile, done) {
@@ -65,7 +65,7 @@ module.exports = function(app,passport) {
   passport.use(new GoogleStrategy({
     clientID: '142136934809-oaf0p7jol48j89p1uj49be25ekh2ojec.apps.googleusercontent.com',
     clientSecret: '4Jq12kwhwPlDYXRjY7650jc7',
-    callbackURL: "http://www.localhost:3000/auth/google/callback"
+    callbackURL: "https://relaximals.herokuapp.com/auth/google/callback"
   },
   function(accessToken,refreshToken, profile, done) {
     //change to google findOne
