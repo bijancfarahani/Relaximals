@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="panel-title text-center">
-                <span class="glyphicon glyphicon-user"></span>Animal form 
+                <span class="glyphicon glyphicon-user"></span>Animal form
             </h2>
         </div>
         <div class="panel-body">
@@ -42,7 +42,7 @@
                             <!-- the picture is rendered with width: 500 and sharpened -->
                             <img ng-src="{{animal.picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>
-                        </div>                  
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -56,13 +56,14 @@
                             <a href="{{picture.url}}" class="thumbnail">
                               <img ng-src="{{picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>
-                        </div>  
+                        </div>
                     </div>
                     </div>
                 </div>
-                <hr />              
-                <button type="submit" class="btn btn-danger btn-block"  ng-click="createAnimal()" ng-disabled="animal.$invalid || !animal.picture || !animal.name">Submit</button>             
+                <hr />
+                <button type="submit" class="btn btn-danger btn-block"  ng-click="createAnimal()" ng-disabled="animal.$invalid || !animal.picture || !animal.name">Submit</button>
             </form>
+
         </div>
     </div>
 </div>
