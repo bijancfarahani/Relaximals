@@ -26,6 +26,11 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public'));
+app.route('/animal')
+    .post(animal.post)
+    .get(animal.getAll);
+app.route('/animal/:id')
+    .get(animal.getOne);
 app.use('/api',appRoutes);
 
 // required for passport
@@ -37,13 +42,9 @@ app.use('/api',appRoutes);
 app.get('*', function(req,res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
-/*static files=========================================================
-app.route('/animal')
-    .post(animal.post)
-    .get(animal.getAll);
-app.route('/animal/:id')
-    .get(animal.getOne);
+//static files=========================================================
+
 // launch ======================================================================
-*/
+
 app.listen(port);
 console.log('The magic happens on port ' + port);

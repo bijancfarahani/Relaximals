@@ -16,6 +16,16 @@ angular.module('authServices',[])
       }
     }
 
+    authFactory.facebook = function(token) {
+      AuthToken.setToken(token);
+    }
+    authFactory.twitter = function(token) {
+      AuthToken.setToken(token);
+    }
+    authFactory.google = function(token) {
+      AuthToken.setToken(token);
+    }
+
     authFactory.logout = function() {
       AuthToken.setToken();
     };

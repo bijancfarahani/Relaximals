@@ -18,4 +18,16 @@ angular.module('userController',['userServices'])
       }
     })
   }
+})
+.controller('facebookCtrl', function($routeParams, $location,Auth) {
+  Auth.facebook($routeParams.token);
+  $location.path('.');
+})
+.controller('twitterCtrl', function($routeParams, $location,Auth) {
+  Auth.twitter($routeParams.token);
+  $location.path('.');
+})
+.controller('googleCtrl', function($routeParams, $location,Auth) {
+  Auth.google($routeParams.token);
+  $location.path('.');
 });

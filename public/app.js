@@ -1,4 +1,4 @@
-var app = angular.module('relaximalsApp', ['appRoutes','userController','userServices', 'mainController','authServices'])
+var app = angular.module('relaximalsApp', ['appRoutes','userController','userServices', 'mainController','authServices','addAnimalCtrl', 'galleryCtrl', 'detailCtrl', 'angular-filepicker'])
 .config(function($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptors');
 })
