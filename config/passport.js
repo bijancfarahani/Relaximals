@@ -25,7 +25,7 @@ module.exports = function(app,passport) {
   passport.use(new FacebookStrategy({
     clientID: '447016842355234',
     clientSecret: '2eb7ea8fbf47062c84053546ad0833b9',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+    callbackURL: 'https://relaximals.herokuapp.com/auth/facebook/callback',
     profileFields: ['id','photos','emails', 'displayName']
     },
     function(accessToken, refreshToken, profile, done) {
