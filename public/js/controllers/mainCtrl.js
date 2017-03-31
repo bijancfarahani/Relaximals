@@ -37,7 +37,7 @@ angular.module('mainController', ['authServices'])
       if(data.data.success) {
         app.loading = false;
         app.successMessage = data.data.message;
-        $location.path('/');
+        $location.path('/profile');
         app.loginData = null;
         app.successMessage = false;
       }

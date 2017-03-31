@@ -25,7 +25,7 @@ module.exports = function(app,passport) {
   passport.use(new FacebookStrategy({
     clientID: '447016842355234',
     clientSecret: '2eb7ea8fbf47062c84053546ad0833b9',
-    callbackURL: 'https://relaximals.herokuapp.com/auth/facebook/callback',
+    callbackURL: 'http://localhost:3000/auth/facebook/callback',
     profileFields: ['id','photos','emails', 'displayName']
     },
     function(accessToken, refreshToken, profile, done) {
@@ -36,7 +36,18 @@ module.exports = function(app,passport) {
           done(null,user);
         }
         else {
-          done(err);
+          var newUser = new User();
+          newUser.username = profile.displayName;
+          newUser.email = profile._json.email;
+          newUser.save(function(err) {
+            if(err)
+              console.log('facebook newuser error');
+
+            else
+              console.log('facebook newuser made');
+
+          });
+          done(null,newUser);
         }
       })
     }
@@ -56,7 +67,18 @@ module.exports = function(app,passport) {
           done(null,user);
         }
         else {
-          done(err);
+          var newUser = new User();
+          newUser.username = profile.displayName;
+          newUser.email = profile.emails[0].value;
+          newUser.save(function(err) {
+            if(err)
+              console.log('twitter newuser error');
+
+            else
+              console.log('twitter newuser made');
+
+          });
+          done(null,newUser);
         }
       })
     }
@@ -76,7 +98,18 @@ module.exports = function(app,passport) {
         done(null,user);
       }
       else {
-        done(err);
+        var newUser = new User();
+        newUser.username = profile.displayName;
+        newUser.email = profile.emails[0].value;
+        newUser.save(function(err) {
+          if(err)
+            console.log('google newuser error');
+
+          else
+            console.log('google newuser made');
+
+        });
+        done(null,newUser);
       }
     })
   }

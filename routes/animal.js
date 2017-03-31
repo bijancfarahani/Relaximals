@@ -1,6 +1,7 @@
 // Dependencies
 var mongoose  = require('mongoose');
 var Animal = require('../models/animal');
+var User   = require('../models/user');
 // App routes
 module.exports = function() {
     return {
@@ -21,9 +22,17 @@ module.exports = function() {
          * Post route to save a new animal into the DB.
          */
         post: function(req, res){
-            //Creates a new animal
+            console.log(req.body);
             var newAnimal = new Animal(req.body);
             //Save it into the DB.
+            var owner = req.body.owner;
+            User.findOneAndUpdate({'email': owner},{$push: {'animals':newAnimal._id}}, function(err, user) {
+              if(err)
+                res.send(err);
+
+            });
+            console.log('owner: ' + owner);
+            console.log('animal: '  + newAnimal);
             console.log("saving into db")
             console.log(newAnimal)
             newAnimal.save(function(err){

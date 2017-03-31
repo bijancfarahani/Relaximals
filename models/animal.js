@@ -10,9 +10,13 @@ var AnimalSchema = new Schema({
     breed: {type: String, required: false},
     details: {type: String, required: false},
     age: {type: String, required: false},
-    picture: {type: Schema.Types.Mixed, required: true},
+    picture: {type: Schema.Types.Mixed, required: false},
     morePictures: {type: Schema.Types.Mixed, required: false}, // this is not required
-    createdAt: {type: Date, default: Date.now}   
+    createdAt: {type: Date, default: Date.now},
+    owner: {
+      type: String,
+      required: true
+    }
 });
 
 // Sets the createdAt parameter equal to the current time
@@ -25,4 +29,4 @@ AnimalSchema.pre('save', function(next){
 });
 
 // Exports the SuperheroSchema for use elsewhere.
-module.exports = mongoose.model('animal', AnimalSchema);
+module.exports = mongoose.model('Animal', AnimalSchema);

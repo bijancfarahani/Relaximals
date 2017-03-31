@@ -1,11 +1,13 @@
-var addCtrl = angular.module('addAnimalCtrl', []);
-addCtrl.controller('addAnimalController', function($scope, $http, filepickerService){
+angular.module('addAnimalCtrl', ['authServices'])
+.controller('addAnimalController', function($scope, $http, filepickerService,Auth){
     $scope.animal = {};
+    Auth.getUser().then(function(data) {
+      $scope.animal.owner = data.data.username;
+    });
     //Send the newly created superhero to the server to store in the db
     $scope.createAnimal = function(){
-        $http.post('/animal', $scope.animal).then(function successCallback(data) { 
-            console.log(JSON.stringify(data));
-            $scope.animal = [];
+        $http.post('/animal', $scope.animal).then(function successCallback(data) {
+            $scope.animal = {};
         },
         function errorCallback(data) {
                 console.log('Error: ' + data);
@@ -21,8 +23,8 @@ addCtrl.controller('addAnimalController', function($scope, $http, filepickerServ
                 openTo: 'IMAGE_SEARCH'
             },
             function(Blob){
-                console.log("logging blob")
-                console.log(JSON.stringify(Blob));
+                //console.log("logging blob")
+                //console.log(JSON.stringify(Blob));
                 $scope.animal.picture = Blob;
                 $scope.$apply();
             }
@@ -39,10 +41,10 @@ addCtrl.controller('addAnimalController', function($scope, $http, filepickerServ
                 openTo: 'IMAGE_SEARCH'
             },
       function(Blob){
-                console.log(JSON.stringify(Blob));
+                //console.log(JSON.stringify(Blob));
                 $scope.animal.morePictures = Blob;
                 $scope.$apply();
             }
         );
-    };  
+    };
 });

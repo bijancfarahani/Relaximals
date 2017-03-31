@@ -3,9 +3,13 @@ var bcrypt   = require('bcrypt-nodejs');
 // define the schema for our user model
 var userSchema = mongoose.Schema({
     username: {type: String, unique: true, lowercase: true},
-    password: {type: String, required: true},
+    password: {type: String, required: false},
     email: {type: String, required: true, unique: true},
     dateCreated: {type: Date, default: Date.now},
+    animals: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Animal'
+    }]
   /*  facebook: {
       id: String,
       token: String
@@ -17,11 +21,13 @@ var userSchema = mongoose.Schema({
 });
 userSchema.pre("save", function(next) {
   var user = this;
-  bcrypt.hash(user.password,null,null,function(err, hash) {
-    if(err) return next(err);
-    user.password = hash;
-    next();
-  });
+  if(user.password != null) {
+    bcrypt.hash(user.password,null,null,function(err, hash) {
+      if(err) return next(err);
+      user.password = hash;
+    });
+  }
+  next();
 });
 
 userSchema.methods.comparePassword = function(password) {

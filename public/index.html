@@ -24,7 +24,6 @@
     <script src="./js/controllers/addAnimalController.js"></script>
     <script src="./js/controllers/galleryController.js"></script>
     <script src="./js/controllers/detailController.js"></script>
-    <script src="./js/controllers/facebookController.js"></script>
     <script src="./js/controllers/userCtrl.js"></script>
     <script src="./js/controllers/mainCtrl.js"></script>
 
@@ -40,12 +39,12 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Relaximals MEAN app</a>
+                <a class="navbar-brand" href="/">Relaximals</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                <li role="presentation"><a href="/addAnimal">Add Animal </a> </li>
+                <li role="presentation"><a ng-show= 'main.isLoggedIn'href="/addAnimal">Add Animal </a> </li>
                 <li role="presentation"><a href="/gallery">Gallery</a></li>
                 <li role="presentation"><a ng-show='!main.isLoggedIn'href="/register">register</a></li>
                 <li role="presentation"><a ng-show='!main.isLoggedIn'href="/login">login</a></li>
