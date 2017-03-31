@@ -29,7 +29,7 @@ module.exports = function(router) {
     });
 
     router.post('/authenticate', function(req,res) {
-      User.findOne({username: req.body.username}).select('email username').exec(function(err,user) {
+      User.findOne({username: req.body.username}).select('email password username').exec(function(err,user) {
         if(err) throw err;
         if(!user)
           res.json({success:false, message: 'could not authenticate user'});
