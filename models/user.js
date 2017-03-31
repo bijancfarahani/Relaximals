@@ -19,15 +19,17 @@ var userSchema = mongoose.Schema({
       token: String
     }*/
 });
-userSchema.pre("save", function(next) {
-  var user = this;
-  if(user.password != null) {
-    bcrypt.hash(user.password,null,null,function(err, hash) {
-      if(err) return next(err);
-      user.password = hash;
+userSchema.pre('save', function(next) {
+    var user = this;
+
+    if (!user.isModified('password')) return next(); // If password was not changed or is new, ignore middleware
+
+    // Function to encrypt password
+    bcrypt.hash(user.password, null, null, function(err, hash) {
+        if (err) return next(err); // Exit if error is found
+        user.password = hash; // Assign the hash to the user's password so it is saved in database encrypted
+        next(); // Exit Bcrypt function
     });
-  }
-  next();
 });
 
 userSchema.methods.comparePassword = function(password) {

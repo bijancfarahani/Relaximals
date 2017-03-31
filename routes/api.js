@@ -19,15 +19,17 @@ module.exports = function(router) {
           if(err)
             res.json({success: false, message:'username or email already exists'});
 
-          else
+          else {
             res.json({success: true, message:'user created'});
+
+          }
 
         });
       }
     });
 
     router.post('/authenticate', function(req,res) {
-      User.findOne({username: req.body.username}).select('email username password').exec(function(err,user) {
+      User.findOne({username: req.body.username}).select('email username').exec(function(err,user) {
         if(err) throw err;
         if(!user)
           res.json({success:false, message: 'could not authenticate user'});
