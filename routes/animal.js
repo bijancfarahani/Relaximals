@@ -25,16 +25,14 @@ module.exports = function() {
             console.log(req.body);
             var newAnimal = new Animal(req.body);
             //Save it into the DB.
-            var owner = req.body.owner;
-            User.findOneAndUpdate({'email': owner},{$push: {'animals':newAnimal._id}}, function(err, user) {
+            var owner = req.body.ownerName;
+            var ownerEmail = req.body.ownerEmail;
+            console.log('owner' + ownerEmail);
+            User.findOneAndUpdate({'email': ownerEmail},{$push: {'animals':newAnimal._id}}, function(err, user) {
               if(err)
                 res.send(err);
 
             });
-            console.log('owner: ' + owner);
-            console.log('animal: '  + newAnimal);
-            console.log("saving into db")
-            console.log(newAnimal)
             newAnimal.save(function(err){
                 if(err)
                     res.send(err);

@@ -2,7 +2,8 @@ angular.module('addAnimalCtrl', ['authServices'])
 .controller('addAnimalController', function($scope, $http, filepickerService,Auth){
     $scope.animal = {};
     Auth.getUser().then(function(data) {
-      $scope.animal.owner = data.data.username;
+      $scope.animal.ownerName = data.data.username;
+      $scope.animal.ownerEmail = data.data.email;
     });
     //Send the newly created superhero to the server to store in the db
     $scope.createAnimal = function(){
