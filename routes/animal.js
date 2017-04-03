@@ -22,7 +22,6 @@ module.exports = function() {
          * Post route to save a new animal into the DB.
          */
         post: function(req, res){
-            console.log(req.body);
             var newAnimal = new Animal(req.body);
             //Save it into the DB.
             var owner = req.body.ownerName;
