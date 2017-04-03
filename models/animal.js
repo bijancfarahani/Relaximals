@@ -13,7 +13,7 @@ var AnimalSchema = new Schema({
     picture: {type: Schema.Types.Mixed, required: false},
     morePictures: {type: Schema.Types.Mixed, required: false}, // this is not required
     createdAt: {type: Date, default: Date.now},
-    owner: {
+    ownerName: {
       type: String,
       required: true
     }
