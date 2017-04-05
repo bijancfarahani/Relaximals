@@ -40,7 +40,7 @@ app.use('/api',appRoutes);
 //require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.get('*', function(req,res) {
-  res.sendFile(path.join(__dirname + '/public/index.html'));
+  res.sendFile(path.join(__dirname + '/../public/index.html'));
 });
 //static files=========================================================
 
