@@ -4,9 +4,9 @@
   "description": "An app to display fun images of animals to destress",
   "main": "index.js",
   "scripts": {
-    "start": "server.js",
+    "start": "server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server/server.js"
   },
   "author": "Bijan Farahani",
   "license": "ISC",

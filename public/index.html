@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Relaximals</title>
-    <meta name="description" content="Animals database">
+    <meta name="description" content="[Relaximals tagline]">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <base href="/">
@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 
     <!-- JS libraries -->
-
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-route/angular-route.js"></script>
     <script src="./bower_components/filepicker-js/filepicker.js"></script>
@@ -21,17 +20,16 @@
     <script src="./app.js"></script>
     <script src="./routes.js"></script>
 
+    <!-- Angular Controllers -->
     <script src="./js/controllers/addAnimalController.js"></script>
     <script src="./js/controllers/galleryController.js"></script>
     <script src="./js/controllers/detailController.js"></script>
     <script src="./js/controllers/userCtrl.js"></script>
     <script src="./js/controllers/mainCtrl.js"></script>
 
+    <!-- Angular Services -->
     <script src="./js/services/userServices.js"></script>
     <script src="./js/services/authServices.js"></script>
-
-
-
 
 </head>
 <body>
@@ -50,9 +48,6 @@
                 <li role="presentation"><a ng-show='!main.isLoggedIn'href="/login">login</a></li>
                 <li role="presentation"><a ng-show= 'main.isLoggedIn'href="/"ng-click='main.logout();'>logout</a></li>
                 <li role="presentation"><a ng-show= 'main.isLoggedIn'href="/profile">Hello {{main.username}}</a></li>
-
-
-
               </ul>
             </div>
         </div>

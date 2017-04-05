@@ -38,7 +38,7 @@
                         </button>
                         <div style="margin-top:10px;">
                             <!-- Show the thumbnail only when the picture is uploaded -->
-                            <a href="{{animal.picture.url}}" class="thumbnail" ng-if="animal.picture">
+                            <a class="thumbnail" ng-if="animal.picture">
                             <!-- the picture is rendered with width: 500 and sharpened -->
                             <img ng-src="{{animal.picture.url | fpConvert: {filter:'sharpen'} }}">
                             </a>
