@@ -29,7 +29,7 @@ module.exports = function(router) {
     });
 
     router.post('/authenticate', function(req,res) {
-      User.findOne({username: req.body.username}).select('email password username').exec(function(err,user) {
+      User.findOne({username: req.body.username}).select('username password favorites').exec(function(err,user) {
         if(err) throw err;
         if(!user)
           res.json({success:false, message: 'could not authenticate user'});
@@ -43,7 +43,8 @@ module.exports = function(router) {
           if(!validPassword)
             res.json({success:false, message:'could not authenticate password'});
           else {
-            var token = jwt.sign({username: user.username, email: user.email},secretVar,{expiresIn: '24h'});
+            console.log(user);
+            var token = jwt.sign({username: user.username, _id: user._id, favorites: user.favorites},secretVar,{expiresIn: '24h'});
             res.json({success:true, message: 'user authenticated',token: token});
           }
         }

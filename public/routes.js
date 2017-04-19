@@ -56,6 +56,7 @@ var app = angular.module('appRoutes',['ngRoute'])
     .when('/detail/:id', {
       templateUrl: 'partials/detail.html',
       controller: 'detailController',
+      controllerAs: 'detail'
     })
     .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode({

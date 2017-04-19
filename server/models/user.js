@@ -9,7 +9,12 @@ var userSchema = mongoose.Schema({
     animals: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Animal'
-    }]
+    }],
+    favorites: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Animal'
+    }],
+
   /*  facebook: {
       id: String,
       token: String

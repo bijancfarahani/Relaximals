@@ -49,6 +49,40 @@ module.exports = function() {
                 //If no errors, send it back to the client
                 res.json(animal);
             });
+        },
+
+        addFavorite: function(req, res) {
+          console.log(req.body);
+          User.findOneAndUpdate({'username': req.body.username},{$push: {'favorites':req.body.animal._id}}, function(err, user) {
+            if(err) return err;
+
+          });
+          Animal.findById(req.body.animal._id, function(err, animal) {
+            if(err) res.send(err);
+            animal.numFavorites++;
+            animal.save(function(err) {
+              if(err) res.send(err);
+              else {
+                res.json(animal);
+              }
+            });
+          });
+        },
+        removeFavorite: function(req,res) {
+          User.findOneAndUpdate({'username': req.body.username},{$pull: {'favorites': req.body.animal._id}}, function(err, user) {
+            if(err) return err;
+          });
+          Animal.findById(req.body.animal._id, function(err, animal) {
+            if(err) res.send(err);
+            animal.numFavorites--;
+            animal.save(function(err) {
+              if(err) res.json(err);
+              else {
+                res.json(animal);
+              }
+            });
+          });
         }
+
     }
 };

@@ -63,8 +63,5 @@ angular.module('authServices',[])
       if (token) config.headers['x-access-token'] = token;
       return config;
     }
-
-
-
     return authInterceptorsFactory;
   });

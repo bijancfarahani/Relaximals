@@ -10,6 +10,7 @@ var AnimalSchema = new Schema({
     breed: {type: String, required: false},
     details: {type: String, required: false},
     age: {type: String, required: false},
+    numFavorites: {type: Number, min: 0, default: 0},
     picture: {type: Schema.Types.Mixed, required: false},
     morePictures: {type: Schema.Types.Mixed, required: false}, // this is not required
     createdAt: {type: Date, default: Date.now},
