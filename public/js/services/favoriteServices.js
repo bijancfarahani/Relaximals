@@ -9,5 +9,9 @@ angular.module('favoriteServices',[])
     var animalUpdate = $http.post('/animal/removeFavorite', data);
     return animalUpdate;
   };
+  favoriteFactory.doCheckFavorite = function(data) {
+    console.log(data);
+    return $http.post('/animal/checkFavorite', data);
+  };
   return favoriteFactory;
 });

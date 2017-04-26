@@ -9,6 +9,8 @@
     <base href="/">
     <!-- CSS -->
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./styles.css"/>
+    <link href="navbar-fixed-top.css" rel="stylesheet">
 
     <!-- JS libraries -->
     <script src="./bower_components/angular/angular.js"></script>
@@ -26,6 +28,7 @@
     <script src="./js/controllers/detailController.js"></script>
     <script src="./js/controllers/userCtrl.js"></script>
     <script src="./js/controllers/mainCtrl.js"></script>
+    <script src="./js/controllers/suggestCtrl.js"></script>
 
     <!-- Angular Services -->
     <script src="./js/services/userServices.js"></script>
@@ -36,26 +39,44 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Relaximals</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li role="presentation"><a ng-show= 'main.isLoggedIn'href="/addAnimal">Add Animal </a> </li>
-                <li role="presentation"><a href="/gallery">Gallery</a></li>
-                <li role="presentation"><a ng-show='!main.isLoggedIn'href="/register">register</a></li>
-                <li role="presentation"><a ng-show='!main.isLoggedIn'href="/login">login</a></li>
-                <li role="presentation"><a ng-show= 'main.isLoggedIn'href="/"ng-click='main.logout();'>logout</a></li>
-                <li role="presentation"><a ng-show= 'main.isLoggedIn'href="/profile">Hello {{main.username}}</a></li>
-              </ul>
-            </div>
-        </div>
-    </nav>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Relaximals</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse" ng-controller="headerCtrl">
+        <ul class="nav navbar-nav">
+          <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
+          <li ng-class="{ active: isActive('/profile')}"><a ng-show = 'main.isLoggedIn' href="/profile">Hello {{main.username}}</a></li>
+          <li ng-class="{ active: isActive('/gallery')}"><a href="/gallery">Gallery</a></li>
+          <li ng-class="{ active: isActive('/addAnimal')}"><a ng-show = 'main.isLoggedIn' href="/addAnimal">Add Pet</a></li>
+          <li ng-class="{ active: isActive('/register')}"><a ng-show = '!main.isLoggedIn' href="/register">Register</a></li>
+          <li ng-class="{ active: isActive('/login')}"><a ng-show = '!main.isLoggedIn' href="/login">Login</a></li>
+          <li><a ng-show= 'main.isLoggedIn'href="/"ng-click='main.logout();'>Logout</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
     <!-- Here is where the partials will be displayed -->
     <div ng-view></div>
+  <footer class="footer">
+       <div class="container">
+         <p class="text-muted">Site by Bijan Farahani</p>
+         <a class="text-muted" href='https://github.com/bijancfarahani'>My Github</a>
+         <a class="text-muted" href='/suggest'>Suggest an Idea</a>
+
+       </div>
+  </footer>
+
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

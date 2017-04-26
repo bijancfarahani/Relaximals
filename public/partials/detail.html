@@ -1,5 +1,5 @@
 <!-- View the details of an animal -->
-<div class="col-md-8 col-md-offset-2" ng-show = 'load'>
+<div class="col-md-8 col-md-offset-2" ng-show = '!detail.isLoading'>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="panel-title text-center"><span class="glyphicon glyphicon-user"></span> Animal details </h2>
@@ -12,8 +12,8 @@
             <p class="text-left"><label>Details: </label> {{animal.data.details}}</p>
             <p class="text-left"><label>Owner: </label> {{animal.data.ownerName}}</p>
             <p class="text-left"><label>Favorites: </label> {{animal.data.numFavorites}}</p>
-            <button type='button' class='btn btn-success' ng-show= '!isFavorited && isLoggedIn'ng-click='detail.addFavorite();'>Favorite</button>
-            <button type='button' class='btn btn-success' ng-show= 'isFavorited && isLoggedIn'ng-click='detail.removeFavorite();'>UnFavorite</button>
+            <button type='button' class='btn btn-success' ng-show= '!detail.isFavorited && detail.isLoggedIn'ng-click='detail.addFavorite();'>Favorite</button>
+            <button type='button' class='btn btn-success' ng-show= 'detail.isFavorited && detail.isLoggedIn'ng-click='detail.removeFavorite();'>UnFavorite</button>
 
 
 

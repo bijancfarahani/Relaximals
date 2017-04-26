@@ -3,43 +3,26 @@ detailCtrl.controller('detailController', function($scope,$routeParams,$q,$http,
     var app = this;
     $scope.animal = {};
 
-    app.load = false;
-    //get the id to query the db and retrieve the correct superhero
+    app.isLoading = true;
+    app.isFavorited = null;   //get the id to query the db and retrieve the correct superhero
     var id = $routeParams.id;
     var postObject = {
       username: String,
       animal: Object
     };
-    //IDEA: CHECK IF ANIMAL ID IS IN USER FAVORITES ARRAY RATHER THAN SEND ENTIRE ARRAY
-    app.isFavorited = $q.defer();
+    var checkObject = {
+      username: String,
+      animalID: id
+    };
     if(Auth.isLoggedIn()) {
       app.isLoggedIn = true;
       Auth.getUser().then(function (data) {
         postObject.username = data.data.username;
-        if(data.data.favorites.length == 0) {
-          app.isFavorited.resolve(false);
-          app.load = true;
-        }
-        for(var i = 0; i < data.data.favorites.length; i++) {
-          if(id == data.data.favorites[i]) {
-            app.isFavorited.resolve(true)
-            app.load = true;
-            break;
-          }
-          if(i == data.data.favorites.length - 1) {
-            app.isFavorited.resolve(false);
-            app.load = true;
-          }
-        }
-
+        checkObject.username = data.data.username;
+        app.checkFavorite();
       });
     }
-    else {
-      app.isLoggedIn = false;
-      app.load = true;
-    }
 
-    //console.log("id: " + id);
     $http.get('/animal/' + id).then(function successCallback(data) {
         //console.log(JSON.stringify(data)); MAYBE JSON FIRST BEFORE ASSIGNING TO SCOPE
         $scope.animal = data;
@@ -66,5 +49,17 @@ detailCtrl.controller('detailController', function($scope,$routeParams,$q,$http,
       function errorCallback(data) {
         console.log('Error: ' + data);
       });
+    }
+    this.checkFavorite = function() {
+      Favorite.doCheckFavorite(checkObject).then(function successCallback(data) {
+        app.isFavorited = data.data;
+        app.isLoading = false;
+      },
+      function errorCallback(data) {
+        console.log("error: " + data);
+        for(var property in data) {
+          console.log(property + "=" + data[property]);
+        }
+      })
     }
 });

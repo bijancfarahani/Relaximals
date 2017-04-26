@@ -26,7 +26,6 @@ module.exports = function() {
             //Save it into the DB.
             var owner = req.body.ownerName;
             var ownerEmail = req.body.ownerEmail;
-            console.log('owner' + ownerEmail);
             User.findOneAndUpdate({'email': ownerEmail},{$push: {'animals':newAnimal._id}}, function(err, user) {
               if(err)
                 res.send(err);
@@ -52,10 +51,8 @@ module.exports = function() {
         },
 
         addFavorite: function(req, res) {
-          console.log(req.body);
           User.findOneAndUpdate({'username': req.body.username},{$push: {'favorites':req.body.animal._id}}, function(err, user) {
             if(err) return err;
-
           });
           Animal.findById(req.body.animal._id, function(err, animal) {
             if(err) res.send(err);
@@ -81,6 +78,24 @@ module.exports = function() {
                 res.json(animal);
               }
             });
+          });
+        },
+        checkFavorite: function(req,res) {
+          User.findOne({'username': req.body.username}, 'favorites', function(err, user) {
+            var foundBool = false;
+            if(err)  {
+              res.send(err);
+            }
+            if(user.favorites.length == 0)
+              res.json(foundBool);
+            for(var i = 0; i < user.favorites.length; i++) {
+              if(user.favorites[i] == req.body.animalID) {
+                foundBool = true;
+              }
+              if(i == user.favorites.length - 1) {
+                res.json(foundBool);
+              }
+            }
           });
         }
 

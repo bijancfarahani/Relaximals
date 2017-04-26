@@ -58,6 +58,11 @@ var app = angular.module('appRoutes',['ngRoute'])
       controller: 'detailController',
       controllerAs: 'detail'
     })
+    .when('/suggest', {
+      templateUrl: 'partials/suggest.html',
+      controller: 'suggestCtrl',
+      controllerAs: 'suggest'
+    })
     .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode({
       enabled: true,

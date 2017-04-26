@@ -1,4 +1,9 @@
 angular.module('mainController', ['authServices'])
+.controller('headerCtrl', function ($scope, $location) {
+    $scope.isActive = function (viewLocation) {
+      return viewLocation === $location.path();
+    };
+  })
 .controller('mainCtrl', function(Auth, $location,$timeout,$rootScope, $window) {
   var app = this;
   app.loadme = false;

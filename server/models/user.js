@@ -14,15 +14,6 @@ var userSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Animal'
     }],
-
-  /*  facebook: {
-      id: String,
-      token: String
-    },
-    google:  {
-      id: String,
-      token: String
-    }*/
 });
 userSchema.pre('save', function(next) {
     var user = this;

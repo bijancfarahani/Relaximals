@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Suggestion = require('../models/suggestion');
 var jwt  = require('jsonwebtoken');
 var secretVar = 'testSecret';
 module.exports = function(router) {
@@ -72,7 +73,16 @@ module.exports = function(router) {
     router.post('/me', function(req,res) {
       res.send(req.decoded);
     })
-
+    router.post('/suggestion', function(req,res) {
+      var suggestion = new Suggestion();
+      suggestion.content = req.body.data;
+      suggestion.save(function(err) {
+        if(err)
+          res.json({success: false, message:'error with suggestion'});
+        else {
+          res.json({success: true, message:'suggestion posted'});
+        }
+      });
+    });
     return router;
-
 };

@@ -35,6 +35,8 @@ app.route('/animal/addFavorite')
     .post(animal.addFavorite);
 app.route('/animal/removeFavorite')
     .post(animal.removeFavorite);
+app.route('/animal/checkFavorite')
+    .post(animal.checkFavorite);
 app.use('/api',appRoutes);
 
 // required for passport
