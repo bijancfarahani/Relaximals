@@ -22,6 +22,9 @@ detailCtrl.controller('detailController', function($scope,$routeParams,$q,$http,
         app.checkFavorite();
       });
     }
+    else {
+      app.isLoading = false;
+    }
 
     $http.get('/animal/' + id).then(function successCallback(data) {
         //console.log(JSON.stringify(data)); MAYBE JSON FIRST BEFORE ASSIGNING TO SCOPE
