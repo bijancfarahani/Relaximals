@@ -2,44 +2,43 @@ var app = angular.module('appRoutes',['ngRoute'])
 .config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'views/pages/home.html'
+      templateUrl: 'partials/home.html'
     })
     .when('/register', {
-      templateUrl: '/views/pages/register.html',
+      templateUrl: '/partials/register.html',
       controller: 'regCtrl',
       controllerAs: 'register',
       authenticated: false
     })
     .when('/login', {
-      templateUrl: 'views/pages/login.html',
+      templateUrl: 'partials/login.html',
       authenticated: false
     })
     .when('/logout', {
-      templateUrl: 'views/pages/logout.html',
+      templateUrl: 'partials/logout.html',
       authenticated: true
     })
     .when('/facebook/:token', {
-      templateUrl: 'views/pages/social.html',
+      templateUrl: 'partials/social.html',
       controller: 'facebookCtrl',
       controllerAs: 'facebook',
       authenticated: false
 
     })
     .when('/twitter/:token', {
-      templateUrl: 'views/pages/social.html',
+      templateUrl: 'partials/social.html',
       controller: 'twitterCtrl',
       controllerAs: 'twitter',
       authenticated: false
     })
     .when('/google/:token', {
-      templateUrl: 'views/pages/social.html',
+      templateUrl: 'partials/social.html',
       controller: 'googleCtrl',
       controllerAs: 'google',
       authenticated: false
-
     })
     .when('/profile', {
-      templateUrl: 'views/pages/profile.html',
+      templateUrl: 'partials/profile.html',
       authenticated: true
 
     })
@@ -47,7 +46,6 @@ var app = angular.module('appRoutes',['ngRoute'])
       templateUrl: 'partials/addAnimal.html',
       controller: 'addAnimalController',
       authenticated: true
-
     })
     .when('/gallery', {
       templateUrl: 'partials/gallery.html',

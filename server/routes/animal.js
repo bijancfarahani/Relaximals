@@ -3,25 +3,24 @@ var mongoose  = require('mongoose');
 var Animal = require('../models/animal');
 var User   = require('../models/user');
 // App routes
-module.exports = function() {
-    return {
+module.exports = function(router) {
         /*
          * Get route to retrieve all the animals.
          */
-        getAll : function(req, res){
-            //Query the DB and if no errors, send all the superheroes
+        router.route('/gallery')
+          .get(function(req, res){
+            //Query the DB and if no errors, send all the animals
             var query = Animal.find({});
             query.exec(function(err, animals){
                 if(err) res.send(err);
                 //If no errors, send them back to the client
                 res.json(animals);
-
             });
-        },
-        /*
-         * Post route to save a new animal into the DB.
-         */
-        post: function(req, res){
+          })
+          /*
+          * Post route to save a new animal into the DB.
+          */
+          .post(function(req, res){
             var newAnimal = new Animal(req.body);
             //Save it into the DB.
             var owner = req.body.ownerName;
@@ -38,19 +37,18 @@ module.exports = function() {
                 else
                     res.json(req.body);
             });
-        },
+          })
         /*
-         * Get a single animal based on id.
-         */
-        getOne: function(req, res){
+        * Get a single animal based on id.
+        */
+        router.get('/:id',function(req, res){
             Animal.findById(req.params.id, function(err, animal){
                 if(err) res.send(err);
                 //If no errors, send it back to the client
                 res.json(animal);
             });
-        },
-
-        addFavorite: function(req, res) {
+        })
+        router.post('/addFavorite',function(req, res) {
           User.findOneAndUpdate({'username': req.body.username},{$push: {'favorites':req.body.animal._id}}, function(err, user) {
             if(err) return err;
           });
@@ -64,8 +62,8 @@ module.exports = function() {
               }
             });
           });
-        },
-        removeFavorite: function(req,res) {
+        })
+        router.post('/removeFavorite', function(req,res) {
           User.findOneAndUpdate({'username': req.body.username},{$pull: {'favorites': req.body.animal._id}}, function(err, user) {
             if(err) return err;
           });
@@ -79,8 +77,8 @@ module.exports = function() {
               }
             });
           });
-        },
-        checkFavorite: function(req,res) {
+        })
+        router.post('/checkFavorite', function(req,res) {
           User.findOne({'username': req.body.username}, 'favorites', function(err, user) {
             var foundBool = false;
             if(err)  {
@@ -97,7 +95,6 @@ module.exports = function() {
               }
             }
           });
-        }
-
-    }
-};
+        })
+        return router;
+      }
