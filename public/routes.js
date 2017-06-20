@@ -39,6 +39,8 @@ var app = angular.module('appRoutes',['ngRoute'])
     })
     .when('/profile', {
       templateUrl: 'partials/profile.html',
+      controller: 'profileController',
+      controllerAs: 'profile',
       authenticated: true
 
     })

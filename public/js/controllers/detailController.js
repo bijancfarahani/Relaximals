@@ -27,14 +27,27 @@ detailCtrl.controller('detailController', function($scope,$routeParams,$q,$http,
     }
 
     $http.get('/animal/' + id).then(function successCallback(data) {
-        //console.log(JSON.stringify(data)); MAYBE JSON FIRST BEFORE ASSIGNING TO SCOPE
+        console.log(JSON.stringify(data));// MAYBE JSON FIRST BEFORE ASSIGNING TO SCOPE
         $scope.animal = data;
         postObject.animal = $scope.animal.data;
+        console.log($scope.animal.data.ownerName + '  ' + postObject.username)
+        if($scope.animal.data.ownerName == postObject.username) {
+          console.log('in if')
+          app.isUserAnimal = true;
+        }
     },
     function errorCallback(data) {
         console.log('Error: ' + data);
     });
-    console.log(app);
+    this.deleteAnimal = function() {
+      $http.post('animal/deleteAnimal', postObject).then(function successCallback(data) {
+        //remove pet from the scope
+
+      },
+      function errorCallback(data) {
+        console.log('error' + data);
+      })
+    }
     this.addFavorite = function() {
       Favorite.doFavorite(postObject).then(function successCallback(data) {
         $scope.animal = data;

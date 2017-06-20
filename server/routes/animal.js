@@ -20,15 +20,14 @@ module.exports = function(router) {
           /*
           * Post route to save a new animal into the DB.
           */
-          .post(function(req, res){
+          router.post('/addAnimal',function(req, res){
             var newAnimal = new Animal(req.body);
             //Save it into the DB.
-            var owner = req.body.ownerName;
-            var ownerEmail = req.body.ownerEmail;
-            User.findOneAndUpdate({'email': ownerEmail},{$push: {'animals':newAnimal._id}}, function(err, user) {
+            console.log(req.body);
+            var owner= req.body.ownerName;
+            User.findOneAndUpdate({'username': owner},{$push: {'animals':newAnimal._id}}, function(err, user) {
               if(err)
                 res.send(err);
-
             });
             newAnimal.save(function(err){
                 if(err)
@@ -95,6 +94,38 @@ module.exports = function(router) {
               }
             }
           });
+        })
+
+        router.post('/myAnimals', function(req,res) {
+          User.findOne({'username': req.body.username}, 'animals', function(err,user) {
+            if(err) {
+              res.send(err);
+            }
+            var ids = user.animals;
+            Animal.find({'_id': { $in: ids }}, function(err, animals) {
+              if(err) return err;
+              res.json(animals);
+            });
+          })
+        })
+        router.post('/myFavorites', function(req,res) {
+          User.findOne({'username': req.body.username}, 'favorites', function(err,user) {
+            if(err) {
+              res.send(err);
+            }
+            var ids = user.favorites;
+            Animal.find({'_id': { $in: ids }}, function(err, animals) {
+              if(err) return err;
+              res.json(animals);
+            });
+          })
+        })
+        router.post('/deleteAnimal', function(req,res) {
+          User.findOneAndUpdate({'username': req.body.username},{$pull: {'animals': req.body.animal._id}}, function(err, user) {
+            if(err) res.json({success: false});
+          });
+          Animal.findByIdAndRemove(req.body.animal._id);
+          res.json({success: true});
         })
         return router;
       }

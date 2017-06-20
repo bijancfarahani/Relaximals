@@ -3,11 +3,11 @@ angular.module('addAnimalCtrl', ['authServices'])
     $scope.animal = {};
     Auth.getUser().then(function(data) {
       $scope.animal.ownerName = data.data.username;
-      $scope.animal.ownerEmail = data.data.email;
     });
     //Send the newly created superhero to the server to store in the db
     $scope.createAnimal = function(){
-        $http.post('/animal', $scope.animal).then(function successCallback(data) {
+        console.log($scope.animal);
+        $http.post('/animal/addAnimal', $scope.animal).then(function successCallback(data) {
             $scope.animal = {};
         },
         function errorCallback(data) {

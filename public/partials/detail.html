@@ -14,6 +14,7 @@
             <p class="text-left"><label>Favorites: </label> {{animal.data.numFavorites}}</p>
             <button type='button' class='btn btn-success' ng-show= '!detail.isFavorited && detail.isLoggedIn'ng-click='detail.addFavorite();'>Favorite</button>
             <button type='button' class='btn btn-success' ng-show= 'detail.isFavorited && detail.isLoggedIn'ng-click='detail.removeFavorite();'>UnFavorite</button>
+            <button type='button' class='btn btn-success' ng-show= 'detail.isUserAnimal && detail.isLoggedIn'ng-click='detail.deleteAnimal();'>Remove Animal</button>
 
 
 

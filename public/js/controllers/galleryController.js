@@ -2,7 +2,7 @@ var galleryCtrl = angular.module('galleryCtrl', []);
 galleryCtrl.controller('galleryController', function($scope, $http){
     $scope.animals = [];
     $http.get('animal/gallery').then(function successCallback(data) {
-        console.log(JSON.stringify(data));
+        JSON.stringify(data);
         $scope.animals = data;
     },
     function errorCallback(data){
