@@ -1,10 +1,23 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+var validate = require('mongoose-validator');
+
+var emailValidator = [
+  validate({
+    validator: 'isEmail',
+    message: 'Is not a valid email'
+  }),
+  validate({
+    validator: 'isLength',
+    arguments: [3,25],
+    message: 'email length should be betwen 3 and 25 characters'
+  })
+]
 // define the schema for our user model
 var userSchema = mongoose.Schema({
     username: {type: String, unique: true, lowercase: true},
     password: {type: String, required: false},
-    email: {type: String, required: true, unique: true},
+    email: {type: String, required: true, unique: true,validate: emailValidator},
     dateCreated: {type: Date, default: Date.now},
     animals: [{
       type: mongoose.Schema.Types.ObjectId,

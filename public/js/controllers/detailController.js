@@ -41,8 +41,7 @@ detailCtrl.controller('detailController', function($scope,$routeParams,$q,$http,
     });
     this.deleteAnimal = function() {
       $http.post('animal/deleteAnimal', postObject).then(function successCallback(data) {
-        //remove pet from the scope
-
+        window.history.back();
       },
       function errorCallback(data) {
         console.log('error' + data);

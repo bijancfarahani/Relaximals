@@ -124,8 +124,10 @@ module.exports = function(router) {
           User.findOneAndUpdate({'username': req.body.username},{$pull: {'animals': req.body.animal._id}}, function(err, user) {
             if(err) res.json({success: false});
           });
-          Animal.findByIdAndRemove(req.body.animal._id);
-          res.json({success: true});
+          Animal.findByIdAndRemove(req.body.animal._id, function(err, response) {
+            if(err) return err;
+            res.json({success: true, message: 'animal removed'});
+          });
         })
         return router;
       }
