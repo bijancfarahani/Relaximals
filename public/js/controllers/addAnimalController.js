@@ -1,5 +1,5 @@
 angular.module('addAnimalCtrl', ['authServices'])
-.controller('addAnimalController', function($scope, $http, filepickerService,Auth){
+.controller('addAnimalController', function($scope, $http,$location, filepickerService,Auth){
     $scope.animal = {};
     Auth.getUser().then(function(data) {
       $scope.animal.ownerName = data.data.username;
@@ -9,6 +9,7 @@ angular.module('addAnimalCtrl', ['authServices'])
         console.log($scope.animal);
         $http.post('/animal/addAnimal', $scope.animal).then(function successCallback(data) {
             $scope.animal = {};
+            $location.path('/profile');
         },
         function errorCallback(data) {
                 console.log('Error: ' + data);

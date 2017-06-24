@@ -101,25 +101,37 @@ module.exports = function(router) {
             if(err) {
               res.send(err);
             }
-            var ids = user.animals;
-            Animal.find({'_id': { $in: ids }}, function(err, animals) {
-              if(err) return err;
-              res.json(animals);
-            });
-          })
+            try {
+              var ids = user.animals;
+              Animal.find({'_id': { $in: ids }}, function(err, animals) {
+                if(err) return err;
+                res.json(animals);
+              });
+            }
+            catch (err){
+              console.log('user is null(no uploaded animals)');
+              res.json({success: true,message: 'No uploaded animals'});
+            }
+          });
         })
         router.post('/myFavorites', function(req,res) {
           User.findOne({'username': req.body.username}, 'favorites', function(err,user) {
             if(err) {
               res.send(err);
             }
-            var ids = user.favorites;
-            Animal.find({'_id': { $in: ids }}, function(err, animals) {
-              if(err) return err;
-              res.json(animals);
-            });
-          })
-        })
+            try {
+              var ids = user.favorites;
+              Animal.find({'_id': { $in: ids }}, function(err, animals) {
+                if(err) return err;
+                res.json(animals);
+              });
+            }
+            catch (err){
+              console.log('user is null(no uploaded animals)');
+              res.json({success: true,message: 'No uploaded animals'});
+            }
+          });
+        });
         router.post('/deleteAnimal', function(req,res) {
           User.findOneAndUpdate({'username': req.body.username},{$pull: {'animals': req.body.animal._id}}, function(err, user) {
             if(err) res.json({success: false});
