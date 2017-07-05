@@ -90,9 +90,7 @@ module.exports = function(app,passport) {
     callbackURL: "https://relaximals.herokuapp.com/auth/google/callback"
   },
   function(accessToken,refreshToken, profile, done) {
-    //change to google findOne
     User.findOne({email: profile.emails[0].value}).select('username password email').exec(function(err,user) {
-      //TODO: create new user if one is not found
       if(err) done(err);
       if(user && user != null) {
         done(null,user);
@@ -132,7 +130,5 @@ module.exports = function(app,passport) {
     function(req, res) {
       res.redirect('/google/' + token);
     });
-
-
   return passport;
 }

@@ -7,7 +7,7 @@ angular.module('mainController', ['authServices'])
 .controller('mainCtrl', function(Auth, $location,$timeout,$rootScope, $window) {
   var app = this;
   app.loadme = false;
-
+  //check login status when the route changes
   $rootScope.$on('$routeChangeStart', function() {
     if(Auth.isLoggedIn()) {
       app.isLoggedIn = true;
@@ -23,6 +23,7 @@ angular.module('mainController', ['authServices'])
     }
     if($location.hash() == '_=_') $location.hash(null);
   });
+  //login services redirects
   this.facebook = function() {
     $window.location = $window.location.protocol + '//' + $window.location.host + '/auth/facebook/';
   }
@@ -42,6 +43,7 @@ angular.module('mainController', ['authServices'])
       if(data.data.success) {
         app.loading = false;
         app.successMessage = data.data.message;
+        //redirect to profile page after logging in
         $location.path('/profile');
         app.loginData = null;
         app.successMessage = false;

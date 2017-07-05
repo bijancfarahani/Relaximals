@@ -4,7 +4,7 @@ angular.module('userController',['userServices'])
   this.regUser = function(regData) {
     app.errorMessage = false;
     app.loading = true;
-
+    //create a user object from the forms
     User.create(app.regData).then(function(data) {
       //data is the output and status from the route execution
       if(data.data.success) {
@@ -19,6 +19,7 @@ angular.module('userController',['userServices'])
     })
   }
 })
+//define controllers for login services
 .controller('facebookCtrl', function($routeParams, $location,Auth) {
   Auth.facebook($routeParams.token);
   $location.path('.');

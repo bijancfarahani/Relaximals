@@ -4,7 +4,7 @@ angular.module('addAnimalCtrl', ['authServices'])
     Auth.getUser().then(function(data) {
       $scope.animal.ownerName = data.data.username;
     });
-    //Send the newly created superhero to the server to store in the db
+    //Send a newly created animal model to the back-end for uploading to the database
     $scope.createAnimal = function(){
         console.log($scope.animal);
         $http.post('/animal/addAnimal', $scope.animal).then(function successCallback(data) {
@@ -15,13 +15,13 @@ angular.module('addAnimalCtrl', ['authServices'])
                 console.log('Error: ' + data);
         });
     };
-    //Single file upload, you can take a look at the options
+    //Single file upload, different services avaliablre
     $scope.upload = function(){
         filepickerService.pick(
             {
                 mimetype: 'image/*',
                 language: 'en',
-                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE', 'FACEBOOK', 'INSTAGRAM'],
                 openTo: 'IMAGE_SEARCH'
             },
             function(Blob){
@@ -43,7 +43,6 @@ angular.module('addAnimalCtrl', ['authServices'])
                 openTo: 'IMAGE_SEARCH'
             },
       function(Blob){
-                //console.log(JSON.stringify(Blob));
                 $scope.animal.morePictures = Blob;
                 $scope.$apply();
             }

@@ -3,8 +3,8 @@ angular.module('suggestController',[])
   console.log('in suggest');
   var app = this;
   $scope.suggest = {};
+  //take data entered in suggestion form and post it to back-end for database upload
   this.doSuggest = function(suggestData) {
-    console.log($scope.suggest);
     $http.post('api/suggestion', $scope.suggest);
   }
 });

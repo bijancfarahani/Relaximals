@@ -2,17 +2,15 @@
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
 
-// Defines the superhero schema
+// Defines the animal schema
 var AnimalSchema = new Schema({
     name: {type: String, required: true},
     gender: {type: String, required: false},
-    color: {type: String, required: false},
-    breed: {type: String, required: false},
     details: {type: String, required: false},
     age: {type: String, required: false},
     numFavorites: {type: Number, min: 0, default: 0},
     picture: {type: Schema.Types.Mixed, required: false},
-    morePictures: {type: Schema.Types.Mixed, required: false}, // this is not required
+    morePictures: {type: Schema.Types.Mixed, required: false},
     createdAt: {type: Date, default: Date.now},
     ownerName: {
       type: String,
@@ -29,5 +27,5 @@ AnimalSchema.pre('save', function(next){
     next();
 });
 
-// Exports the SuperheroSchema for use elsewhere.
+// Exports the aniamlSchema for use elsewhere.
 module.exports = mongoose.model('Animal', AnimalSchema);

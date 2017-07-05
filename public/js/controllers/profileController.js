@@ -1,6 +1,7 @@
 var profileCtrl = angular.module('profileCtrl', []);
 profileCtrl.controller('profileController', function($scope, $http,Auth){
     $scope.animals = [];
+    //get user data and favorites/uploaded animals
     Auth.getUser().then(function (data) {
       var userObj = {
         username: data.data.username
